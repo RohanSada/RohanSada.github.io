@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohan Sada | Computer Vision Engineer</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CSS STYLES --- */
+        /* ==========================================
+           1. GLOBAL VARIABLES (COLOR PALETTE)
+           Change a color here, and it updates everywhere!
+           ========================================== */
         :root {
-            --primary: #000000;
-            --accent: #3b82f6;
-            --bg-body: #ffffff;
-            --bg-beige: #e9e2db;
-            --text-main: #333333;
-            --text-light: #666666;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --border-color: #eaeaea;
+            --primary: #000000;       /* Main header text color (Black) */
+            --accent: #3b82f6;        /* Link hover color (Blue) */
+            --bg-body: #ffffff;       /* Main background color (White) */
+            --bg-beige: #e9e2db;      /* The beige background for the left column */
+            --text-main: #333333;     /* Standard paragraph text color (Dark Grey) */
+            --text-light: #666666;    /* Subtitle text color (Medium Grey) */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Heavy shadow for hover effects */
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Light shadow for cards */
+            --border-color: #eaeaea;  /* Very light grey for borders and dividers */
         }
 
+        /* ==========================================
+           2. BASE WEBSITE SETTINGS
+           ========================================== */
         html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 200px;
+            scroll-behavior: smooth; /* Makes the page glide down instead of jumping instantly */
+            /* FIX: 90px creates the perfect cushion so the sticky navbar doesn't cover your text */
+            scroll-padding-top: 90px; 
         }
 
+        /* Removes default browser margins so everything sits flush to the edges */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -33,83 +42,70 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
+            overflow-x: hidden; /* Prevents the page from accidentally scrolling sideways */
         }
 
-        /* --- NAVIGATION --- */
+        /* ==========================================
+           3. TOP NAVIGATION BAR
+           ========================================== */
         .navbar {
             background: #ffffff;
-            position: sticky;
+            position: sticky; /* Keeps the menu glued to the top of the screen when scrolling */
             top: 0;
-            z-index: 1000;
+            z-index: 1000; /* Ensures the navbar stays ON TOP of all other content */
             border-bottom: 1px solid var(--border-color);
             padding: 20px 0;
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; /* Keeps the menu from stretching too wide on massive screens */
+            margin: 0 auto;    /* Centers the container */
             width: 100%;
             padding: 0 40px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Pushes Logo to left, Links to right */
             align-items: center;
         }
 
-        .nav-brand {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        /* Formatting for your Name and Job Title in the top left */
+        .nav-brand { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; }
         .nav-brand h1 { font-size: 1.5rem; font-weight: 600; color: var(--primary); margin: 0; }
         .nav-brand span { font-size: 1rem; color: var(--text-light); font-weight: 300; }
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
+        /* Formatting for the clickable links on the right */
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 400; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); } /* Turns blue when hovered */
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 400;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: color 0.3s;
-        }
 
-        .nav-links a:hover { color: var(--accent); }
-
-        /* --- HERO / ABOUT SECTION (NEW ALIGNMENT FIX) --- */
+        /* ==========================================
+           4. HERO SECTION (ABOUT ME & PROFILE)
+           ========================================== */
         .hero-section {
             position: relative;
-            overflow: hidden; /* Essential for the background trick */
+            overflow: hidden; /* Required to make the background color trick work */
         }
 
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            /* CHANGE THESE NUMBERS TO ADJUST THE WIDTH SPLIT! Must add up to 100% */
+            /* To change layout width, adjust these percentages (e.g., 30% 70%) */
             grid-template-columns: 40% 60%; 
         }
 
-        /* The Beige Side */
+        /* --- The Beige Side (Left) --- */
         .hero-left-column {
             background-color: var(--bg-beige);
-            /* This single line makes the beige bleed perfectly to the edge of the screen */
+            /* This shadow "bleeds" the beige color all the way to the left edge of the monitor */
             box-shadow: -50vw 0 0 0 var(--bg-beige); 
             padding: 60px 40px 80px 40px;
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* Keeps card against the center line */
+            justify-content: flex-end; /* Pushes the profile card toward the center line */
         }
 
-        /* Profile Card */
+        /* Formatting for the actual white box holding your photo */
         .profile-card {
             background: white;
             box-shadow: var(--shadow);
@@ -118,15 +114,16 @@
             flex-direction: column;
             border-radius: 4px;
             width: 100%;
-            max-width: 350px; /* Prevents the card from getting too wide */
+            max-width: 350px; /* Stops the card from getting ridiculously wide on big screens */
         }
 
         .profile-card-content { padding: 50px 30px; }
 
+        /* Profile Photo sizing */
         .profile-img {
             width: 180px; height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
+            border-radius: 50%; /* Makes the image a perfect circle */
+            object-fit: cover;  /* Ensures the image doesn't stretch weirdly */
             margin: 0 auto 20px;
             box-shadow: var(--shadow-sm);
         }
@@ -135,21 +132,15 @@
         .divider { width: 40px; height: 3px; background-color: var(--accent); margin: 15px auto; border: none; }
         .profile-card p { font-weight: 300; letter-spacing: 1px; color: var(--text-light); font-size: 0.95rem; }
 
-        .profile-footer {
-            background-color: white;
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
+        /* Social Media Icons Box */
+        .profile-footer { background-color: white; padding: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 20px; }
         .profile-footer a { color: var(--primary); font-size: 1.2rem; transition: color 0.3s; }
         .profile-footer a:hover { color: var(--accent); }
 
-        /* The White Text Side */
+        /* --- The White Text Side (Right) --- */
         .about-text {
-            padding: 60px 20px 80px 50px; /* 50px left padding keeps text off the line */
+            /* 50px padding on the left keeps the text from touching the beige boundary line */
+            padding: 60px 20px 80px 50px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -160,36 +151,55 @@
         .about-text p { font-size: 1.05rem; margin-bottom: 30px; color: var(--text-main); line-height: 1.8; font-weight: 300; }
         .about-text h3 { font-family: 'Poppins', sans-serif; font-size: 1.4rem; margin-bottom: 15px; margin-top: 30px; font-weight: 600; }
 
+        /* Interests bullet points */
         .interests-list { list-style: none; padding: 0; columns: 1; }
         .interests-list li { margin-bottom: 8px; font-weight: 300; position: relative; padding-left: 15px; }
         .interests-list li::before { content: '•'; position: absolute; left: 0; color: var(--text-main); }
 
+        /* Company Logos Grid */
         .companies-grid { display: flex; gap: 30px; align-items: center; margin-top: 20px; flex-wrap: wrap; }
+        /* Makes logos grey by default, then full color when you hover over them */
         .company-logo { height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
         .company-logo:hover { filter: grayscale(0%); opacity: 1; }
 
-        /* --- REST OF THE PORTFOLIO --- */
+
+        /* ==========================================
+           5. MAIN PORTFOLIO SECTIONS (Projects, Experience, etc.)
+           ========================================== */
+        /* Limits how wide the main content goes to keep it readable */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section.portfolio-section { margin-bottom: 80px; padding-top: 60px; }
+        
+        /* Padding top adjusted here to fix the "snap" when clicking links */
+        section.portfolio-section { margin-bottom: 80px; padding-top: 40px; }
+        
         .section-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 30px; font-weight: 600; }
 
-        /* Projects Grid */
+        /* --- Projects Grid Setup --- */
+        /* Automatically resizes grid columns based on screen size (min 320px wide) */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        /* Individual Project Card formatting */
         .project-card { background: var(--bg-body); border-radius: 8px; box-shadow: var(--shadow-sm); transition: all 0.3s ease; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; }
+        /* Makes the card lift up slightly when hovered */
         .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
+        
+        /* Project Image/Gif Container */
         .project-media { width: 100%; height: 200px; background-color: #f1f5f9; position: relative; }
-        .project-media::after { content: 'Gif / Image'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #94a3b8; font-weight: 600; }
         .project-media img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
+        
+        /* Project Text Box */
         .project-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
         .project-title { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 15px; }
         .project-card ul { padding-left: 20px; color: var(--text-main); font-size: 0.95rem; margin-bottom: 20px; }
         .project-card li { margin-bottom: 8px; font-weight: 300; }
         
+        /* Github View Code Button */
         .btn-github-card { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.9rem; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; transition: all 0.2s; justify-content: center; }
         .btn-github-card:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Experience Section */
+        /* --- Experience Section Setup --- */
         .job-card { background: var(--bg-body); padding: 30px; border-radius: 8px; box-shadow: var(--shadow-sm); margin-bottom: 25px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        /* Adds a blue line on the left when you hover over a job card */
         .job-card:hover { border-left: 4px solid var(--accent); box-shadow: var(--shadow); }
         .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
         .job-title { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--primary); }
@@ -198,24 +208,36 @@
         .job-card ul { padding-left: 20px; font-weight: 300; }
         .job-card li { margin-bottom: 8px; }
 
-        /* Publications Section */
+        /* --- Publications Section Setup --- */
         .pub-card { background: var(--bg-body); padding: 25px; border-radius: 8px; box-shadow: var(--shadow-sm); border-left: 4px solid #10b981; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .pub-title { font-weight: 600; font-size: 1.1rem; color: var(--primary); margin-bottom: 5px; }
         .pub-meta { font-style: italic; color: var(--text-light); font-size: 0.95rem; font-weight: 300; }
 
+        /* ==========================================
+           6. FOOTER SECTION
+           ========================================== */
         footer { text-align: center; padding: 40px; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 40px; background-color: #fafafa; }
 
-        /* Mobile Adjustments */
+
+        /* ==========================================
+           7. MOBILE RESPONSIVE SETTINGS (Phones & Tablets)
+           Any screen smaller than 850px wide uses these rules.
+           ========================================== */
         @media (max-width: 850px) {
+            /* Drops the grid from 2 columns to 1 column */
             .hero-container { grid-template-columns: 1fr; }
+            
+            /* Spreads the beige color fully across the screen on mobile */
             .hero-left-column { 
-                box-shadow: -50vw 0 0 0 var(--bg-beige), 50vw 0 0 0 var(--bg-beige); /* Fills both sides on mobile */
-                justify-content: center; 
+                box-shadow: -50vw 0 0 0 var(--bg-beige), 50vw 0 0 0 var(--bg-beige); 
+                justify-content: center; /* Centers the profile card */
                 padding: 60px 20px 40px 20px; 
             }
             .about-text { padding: 40px 20px 60px 20px; }
+            
+            /* Stacks the logo and navigation links vertically */
             .nav-container { flex-direction: column; gap: 15px; }
-            .nav-brand span { display: none; }
+            .nav-brand span { display: none; } /* Hides "Computer Vision Engineer" to save space */
         }
     </style>
 </head>
