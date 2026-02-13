@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohan Sada | Portfolio</title>
+    <title>Rohan Sada | Computer Vision Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
@@ -20,6 +20,10 @@
             --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling when clicking tabs */
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -29,13 +33,61 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER --- */
+        /* --- NAVIGATION TABS --- */
+        .navbar {
+            background: #ffffff;
+            position: sticky; /* Keeps nav at top when scrolling (optional) */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Underline effect on hover */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO HEADER --- */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
             text-align: center;
-            padding: 80px 20px;
-            margin-bottom: 50px;
+            padding: 60px 20px;
+            margin-bottom: 40px;
         }
 
         header h1 {
@@ -104,7 +156,11 @@
             padding: 0 20px;
         }
 
-        section { margin-bottom: 60px; }
+        section {
+            margin-bottom: 80px; /* Increased spacing between sections */
+            padding-top: 40px; /* Offset for sticky nav */
+            margin-top: -40px;
+        }
 
         h2 {
             font-family: 'Poppins', sans-serif;
@@ -114,6 +170,20 @@
             position: relative;
             padding-left: 15px;
             border-left: 5px solid var(--accent);
+        }
+
+        /* --- ABOUT ME SECTION --- */
+        .about-content {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
         }
 
         /* --- PROJECTS GRID --- */
@@ -131,7 +201,7 @@
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Keeps image inside rounded corners */
+            overflow: hidden;
         }
 
         .project-card:hover {
@@ -140,24 +210,38 @@
             border-color: var(--accent);
         }
 
-        /* NEW: Project GIF Area */
         .project-media {
             width: 100%;
-            height: 200px; /* Fixed height for uniformity */
+            height: 200px;
             background-color: #e2e8f0;
             overflow: hidden;
             border-bottom: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        /* Placeholder Text for GIF Area */
+        .project-media::after {
+            content: 'Gif / Image';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #94a3b8;
+            font-weight: 600;
+            z-index: 0;
         }
 
         .project-media img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image covers area without distortion */
+            object-fit: cover;
             transition: transform 0.5s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .project-card:hover .project-media img {
-            transform: scale(1.05); /* Zoom effect on hover */
+            transform: scale(1.05);
         }
 
         .project-content {
@@ -184,10 +268,7 @@
 
         .project-card li { margin-bottom: 8px; }
 
-        /* NEW: GitHub Button Style */
-        .project-links {
-            margin-top: auto; /* Pushes button to bottom */
-        }
+        .project-links { margin-top: auto; }
 
         .btn-github-card {
             display: inline-flex;
@@ -248,6 +329,28 @@
         .job-card ul { padding-left: 20px; }
         .job-card li { margin-bottom: 8px; }
 
+        /* --- PUBLICATIONS SECTION --- */
+        .pub-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid #10b981; /* Green accent for papers */
+        }
+        
+        .pub-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .pub-meta {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
         footer {
             text-align: center;
             padding: 40px;
@@ -262,15 +365,25 @@
             .projects-grid { grid-template-columns: 1fr; }
             .contact-bar { flex-direction: column; gap: 10px; }
             .contact-bar a { justify-content: center; width: 100%; }
+            .nav-links { gap: 15px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#publications">Publications</a></li>
+        </ul>
+    </nav>
+
     <header>
         <div class="container">
             <h1>Rohan Sada</h1>
-            <p>Computer Vision Engineer | Spatial AI</p>
+            <p>Computer Vision Engineer | Spatial AI Specialist</p>
             
             <div class="contact-bar">
                 <a href="tel:+15513714118"><i class="fas fa-phone"></i> +1 551-371-4118</a>
@@ -285,6 +398,21 @@
     </header>
 
     <div class="container">
+
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    I am a <strong>Computer Vision Engineer</strong> and Master's student at <strong>Rutgers University</strong>, specializing in Spatial AI and 3D Perception. With a strong foundation in Deep Learning, I focus on building efficient, real-time perception pipelines for autonomous systems and video analytics.
+                </p>
+                <p>
+                    My experience spans from designing multi-camera tracking systems at <strong>AllGoVision Technologies</strong> to developing real-time fusion models for airborne systems at <strong>DRDO</strong>. I am proficient in optimizing models for edge deployment using <strong>TensorRT</strong> and have hands-on experience with SLAM, Sensor Fusion, and Generative AI.
+                </p>
+                <p>
+                    <strong>Core Skills:</strong> PyTorch, C++, Python, TensorRT, OpenCV, Docker, Linux, and 3D Geometry.
+                </p>
+            </div>
+        </section>
 
         <section id="projects">
             <h2>Academic Projects</h2>
@@ -302,7 +430,7 @@
                             <li>Integrated <strong>ORB-SLAM3</strong> for global coordinate mapping.</li>
                         </ul>
                         <div class="project-links">
-                            <a href="https://github.com/RohanSada/3D-Scene-Understanding" target="_blank" class="btn-github-card">
+                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
                                 <i class="fab fa-github"></i> View Code
                             </a>
                         </div>
@@ -320,24 +448,10 @@
                             <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong>.</li>
                         </ul>
                         <div class="project-links">
-                            <a href="https://github.com/RohanSada/Distributed_BLIP2_ROCO" target="_blank" class="btn-github-card">
+                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
                                 <i class="fab fa-github"></i> View Code
                             </a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-media">
-                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="Fusion Output">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-title">Real-Time EO/IR Fusion</div>
-                        <ul>
-                            <li><strong>Publication:</strong> IEEE Region 10 Symposium (TENSYMP).</li>
-                            <li>Deep Learning Based Real-Time Fusion of Day and Thermal Videos.</li>
-                            <li>Optimized with <strong>TensorRT</strong> on Jetson Nano (~10 FPS).</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -352,6 +466,11 @@
                             <li>Developed a neural network predictor with <strong>90% forecast accuracy</strong>.</li>
                             <li>Integrated predictor into an interactive real-time map UI.</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -405,6 +524,22 @@
                     <li>Designed an encoder-decoder model optimized with TensorRT on NVIDIA Jetson Nano.</li>
                     <li>Achieved real-time performance (~10 FPS) through optimized low-level processing.</li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            <div class="pub-card">
+                <div class="pub-title">Deep Learning Based Real-Time Fusion of Day and Thermal Videos</div>
+                <div class="pub-meta">
+                    <strong>R. Sada</strong>, D. T. M and R. Rajesh<br>
+                    <em>IEEE Region 10 Symposium (TENSYMP), 2022, Mumbai, India.</em>
+                </div>
+                <div style="margin-top: 15px;">
+                    <a href="https://ieeexplore.ieee.org/document/9864438" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                        <i class="fas fa-external-link-alt"></i> View Paper
+                    </a>
+                </div>
             </div>
         </section>
 
