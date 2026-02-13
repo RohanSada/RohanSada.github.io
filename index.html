@@ -3,243 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohan Sada | Computer Vision Engineer</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --text-color: #333;
-            --bg-color: #f4f4f9;
-            --card-bg: #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .contact-info {
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
-
-        .contact-info a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            border-bottom: 1px dotted #fff;
-        }
-
-        /* Sections */
-        section {
-            background: var(--card-bg);
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        h3 {
-            margin-bottom: 5px;
-            color: #444;
-        }
-
-        .subtitle {
-            font-style: italic;
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* Skills Tags */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: #e1ecf4;
-            color: #2c3e50;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .container { padding: 10px; }
-            section { padding: 20px; }
-        }
-    </style>
+    <title>Rohan Sada | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <div class="container">
-            <h1>Rohan Sada</h1>
-            <p>Computer Vision Engineer | Spatial AI Specialist</p>
-            <div class="contact-info">
-                <a href="https://www.linkedin.com/in/rohansada/" target="_blank">LinkedIn</a> |
-                <a href="https://rohansada000.wixsite.com/rohanportfolio" target="_blank">Portfolio</a> |
-                <span>+1 551-371-4118</span>
-            </div>
+        <h1>Rohan Sada</h1>
+        <p>Computer Vision Engineer | Spatial AI Specialist</p>
+        
+        <div class="contact-info">
+            <a href="tel:+15513714118"><i class="fas fa-phone"></i> +1 551-371-4118</a>
+            <a href="https://www.linkedin.com/in/rohansada/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i> Email</a>
         </div>
+
+        <a href="resume.pdf" class="btn-download" target="_blank" download>
+            <i class="fas fa-download"></i> Download Resume
+        </a>
     </header>
 
     <div class="container">
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Computer Vision</span>
-                <span class="skill-tag">Spatial AI</span>
-                <span class="skill-tag">3D Perception</span>
-                <span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">TensorRT</span>
-                <span class="skill-tag">OpenVINO</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Linux</span>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-title">Semantic SLAM & 3D Understanding</div>
+                    <ul>
+                        <li>Architected a 3D perception pipeline integrating YOLO and Depth Anything models.</li>
+                        <li>Reconstructed 3D object point clouds from monocular cameras.</li>
+                        <li>Integrated ORB-SLAM3 for consistent global coordinate mapping.</li>
+                        <li>Developed custom semantic 3D tracker using KD-Tree neighbor search.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Distributed BLIP-2 Fine Tuning</div>
+                    <ul>
+                        <li>Fine-tuned BLIP-2 on medical data using PyTorch FSDP on 16 A100 GPUs.</li>
+                        <li>Reduced memory usage by 34% via parameter sharding.</li>
+                        <li>Achieved 10.7x throughput speedup with mixed precision training.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Real-Time EO/IR Fusion (Paper)</div>
+                    <ul>
+                        <li>Published in IEEE Region 10 Symposium (TENSYMP).</li>
+                        <li>Deep Learning Based Real-Time Fusion of Day and Thermal Videos.</li>
+                        <li>Optimized for low-latency performance on embedded systems.</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">Parking Occupancy Classifier</div>
+                    <ul>
+                        <li>Built a YOLO-based classifier processing 10K+ hours of video.</li>
+                        <li>Automated video-to-training pipeline for dataset generation.</li>
+                        <li>Achieved high accuracy in real-world urban environments.</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
         <section id="experience">
-            <h2>Work Experience</h2>
-            
-            <div class="job">
-                <h3>Research Intern (CityOS)</h3>
-                <span class="subtitle">WINLAB, Rutgers University, NJ | May 2025 - Aug 2025</span>
-                <ul>
-                    <li>Built a YOLO-based parking occupancy classifier with an automated video-to-training pipeline, processing 10K+ hours of video.</li>
-                    <li>Developed a neural network predictor for parking availability achieving 90% forecast accuracy.</li>
-                    <li>Integrated predictor into an interactive UI (real-time map + predictor) to improve urban mobility visualization.</li>
-                </ul>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <h2>Experience</h2>
+            <div class="experience-list">
 
-            <div class="job">
-                <h3>Computer Vision Engineer</h3>
-                <span class="subtitle">AllGoVision Technologies, Bengaluru | Jun 2022 - Apr 2024</span>
-                <ul>
-                    <li>Designed and deployed a multi-camera tracking pipeline with multi-threading, scaling across 20+ cameras.</li>
-                    <li>Implemented Kalman filters for trajectory prediction, improving cross-camera object tracking and re-ID.</li>
-                    <li>Accelerated inference with NVIDIA TensorRT, cutting model runtime by 30% for production-scale analytics.</li>
-                    <li>Awarded AllGoVision Excellence Award for technical contributions to the Multi-Camera Tracking (MCT) project.</li>
-                </ul>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Research Intern (CityOS)</div>
+                            <div class="job-company">WINLAB, Rutgers University</div>
+                        </div>
+                        <span class="job-date">May 2025 - Aug 2025</span>
+                    </div>
+                    <ul>
+                        <li>Developed a neural network predictor for parking availability with 90% forecast accuracy.</li>
+                        <li>Integrated predictor into an interactive UI (real-time map) to improve urban mobility visualization.</li>
+                    </ul>
+                </div>
 
-            <div class="job">
-                <h3>Student Intern</h3>
-                <span class="subtitle">Centre of Air Borne Systems (DRDO), Bengaluru | Oct 2021 - Dec 2021</span>
-                <ul>
-                    <li><strong>Real-Time EO/IR Fusion:</strong> Built a thermal + visible video fusion system for airborne cameras.</li>
-                    <li><strong>Deep Learning Fusion Model:</strong> Designed an encoder-decoder model optimized with TensorRT on NVIDIA Jetson Nano.</li>
-                    <li>Achieved ~10 FPS real-time performance through optimized low-level processing.</li>
-                </ul>
-            </div>
-        </section>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Computer Vision Engineer</div>
+                            <div class="job-company">AllGoVision Technologies</div>
+                        </div>
+                        <span class="job-date">Jun 2022 - Apr 2024</span>
+                    </div>
+                    <ul>
+                        <li>Designed multi-camera tracking pipeline scaling across 20+ cameras.</li>
+                        <li>Implemented Kalman filters for trajectory prediction and re-ID.</li>
+                        <li>Accelerated inference with NVIDIA TensorRT, cutting model runtime by 30%.</li>
+                    </ul>
+                </div>
 
-        <section id="projects">
-            <h2>Academic Projects</h2>
-            
-            <div class="project">
-                <h3>Semantic SLAM and 3D Scene Understanding</h3>
-                <ul>
-                    <li>Architected a 3D perception pipeline integrating YOLO and Depth Anything models to reconstruct 3D object point clouds.</li>
-                    <li>Integrated ORB-SLAM3 to map local semantic observations into a consistent global coordinate system.</li>
-                    <li>Developed a custom semantic 3D tracker using KD-Tree neighbor search for data association.</li>
-                    <li>Orchestrated a parallelized multi-process architecture using Python multiprocessing.</li>
-                </ul>
-            </div>
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Student Intern</div>
+                            <div class="job-company">DRDO (CABS)</div>
+                        </div>
+                        <span class="job-date">Oct 2021 - Dec 2021</span>
+                    </div>
+                    <ul>
+                        <li>Built a thermal + visible video fusion system for airborne cameras.</li>
+                        <li>Designed encoder-decoder model optimized with TensorRT on NVIDIA Jetson Nano.</li>
+                    </ul>
+                </div>
 
-            <div class="project" style="margin-top: 20px;">
-                <h3>Distributed BLIP-2 Fine Tuning</h3>
-                <ul>
-                    <li>Fine-tuned BLIP-2 on medical data using PyTorch FSDP and DeepSpeed on 16 A100 GPUs.</li>
-                    <li>Reduced memory usage by 34% and achieved 10.7x throughput speedup via parameter sharding and mixed precision training.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="publications">
-            <h2>Publications</h2>
-            <ul>
-                <li>
-                    <strong>R. Sada</strong>, D. T. M and R. Rajesh, "Deep Learning Based Real-Time Fusion of Day and Thermal Videos," 
-                    <em>2022 IEEE Region 10 Symposium (TENSYMP)</em>, Mumbai, India.
-                </li>
-            </ul>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            <div style="margin-bottom: 15px;">
-                <h3>Masters in Electrical and Computer Engineering</h3>
-                <span class="subtitle">Rutgers University - New Brunswick, USA | Current GPA: 3.8/4.0</span>
-            </div>
-            <div>
-                <h3>B.Tech in Electrical and Computer Engineering</h3>
-                <span class="subtitle">PES University, Bengaluru, India | CGPA: 8.11/10</span>
             </div>
         </section>
 
     </div>
-
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #777;">
-        <p>&copy; 2026 Rohan Sada. Hosted on GitHub Pages.</p>
-    </footer>
 
 </body>
 </html>
