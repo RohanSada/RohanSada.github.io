@@ -10,12 +10,12 @@
     <style>
         /* --- CSS STYLES --- */
         :root {
-            --primary: #000000;       /* Black for headings */
-            --accent: #3b82f6;        /* Blue accent */
-            --bg-body: #ffffff;       /* White background */
-            --bg-beige: #e9e2db;      /* Wix beige background */
-            --text-main: #333333;     /* Dark Grey for text */
-            --text-light: #666666;    /* Lighter Grey */
+            --primary: #000000;
+            --accent: #3b82f6;
+            --bg-body: #ffffff;
+            --bg-beige: #e9e2db;
+            --text-main: #333333;
+            --text-light: #666666;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --border-color: #eaeaea;
@@ -32,6 +32,7 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
 
         /* --- NAVIGATION --- */
@@ -42,9 +43,6 @@
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
             padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .nav-container {
@@ -64,18 +62,8 @@
             gap: 10px;
         }
 
-        .nav-brand h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin: 0;
-        }
-
-        .nav-brand span {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-weight: 300;
-        }
+        .nav-brand h1 { font-size: 1.5rem; font-weight: 600; color: var(--primary); margin: 0; }
+        .nav-brand span { font-size: 1rem; color: var(--text-light); font-weight: 300; }
 
         .nav-links {
             display: flex;
@@ -93,38 +81,31 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* --- HERO / ABOUT SECTION --- */
+        /* --- HERO / ABOUT SECTION (NEW ALIGNMENT FIX) --- */
         .hero-section {
             position: relative;
-            padding: 80px 0;
-            overflow: hidden;
-        }
-
-        /* The beige background block */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 45%;
-            height: 100%;
-            background-color: var(--bg-beige);
-            z-index: 0;
+            overflow: hidden; /* Essential for the background trick */
         }
 
         .hero-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
             display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 60px;
+            /* CHANGE THESE NUMBERS TO ADJUST THE WIDTH SPLIT! Must add up to 100% */
+            grid-template-columns: 40% 60%; 
+        }
+
+        /* The Beige Side */
+        .hero-left-column {
+            background-color: var(--bg-beige);
+            /* This single line makes the beige bleed perfectly to the edge of the screen */
+            box-shadow: -50vw 0 0 0 var(--bg-beige); 
+            padding: 80px 40px 80px 20px;
+            display: flex;
             align-items: center;
+            justify-content: flex-end; /* Keeps card against the center line */
         }
 
         /* Profile Card */
@@ -135,42 +116,23 @@
             display: flex;
             flex-direction: column;
             border-radius: 4px;
+            width: 100%;
+            max-width: 350px; /* Prevents the card from getting too wide */
         }
 
-        .profile-card-content {
-            padding: 50px 30px;
-        }
+        .profile-card-content { padding: 50px 30px; }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 180px; height: 180px;
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 20px;
             box-shadow: var(--shadow-sm);
         }
 
-        .profile-card h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .divider {
-            width: 40px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 15px auto;
-            border: none;
-        }
-
-        .profile-card p {
-            font-weight: 300;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
+        .profile-card h2 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--primary); }
+        .divider { width: 40px; height: 3px; background-color: var(--accent); margin: 15px auto; border: none; }
+        .profile-card p { font-weight: 300; letter-spacing: 1px; color: var(--text-light); font-size: 0.95rem; }
 
         .profile-footer {
             background-color: white;
@@ -181,275 +143,76 @@
             gap: 20px;
         }
 
-        .profile-footer a {
-            color: var(--primary);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
+        .profile-footer a { color: var(--primary); font-size: 1.2rem; transition: color 0.3s; }
+        .profile-footer a:hover { color: var(--accent); }
 
-        .profile-footer a:hover {
-            color: var(--accent);
-        }
-
-        /* About Text Container */
-        .about-text h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            font-weight: 900;
-        }
-
-        .about-text p {
-            font-size: 1.05rem;
-            margin-bottom: 30px;
-            color: var(--text-main);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        .about-text h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            margin-top: 30px;
-            font-weight: 600;
-        }
-
-        .interests-list {
-            list-style: none;
-            padding: 0;
-            columns: 1; /* Adjust to 2 if you want a two-column list */
-        }
-
-        .interests-list li {
-            margin-bottom: 8px;
-            font-weight: 300;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .interests-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--text-main);
-        }
-
-        /* Company Logos Area */
-        .companies-grid {
+        /* The White Text Side */
+        .about-text {
+            padding: 80px 20px 80px 50px; /* 50px left padding keeps text off the line */
             display: flex;
-            gap: 30px;
-            align-items: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--bg-body);
         }
 
-        .company-logo {
-            height: 60px; /* Adjust based on your actual logo proportions */
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.3s;
-        }
+        .about-text h2 { font-family: 'Poppins', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--primary); font-weight: 600; }
+        .about-text p { font-size: 1.05rem; margin-bottom: 30px; color: var(--text-main); line-height: 1.8; font-weight: 300; }
+        .about-text h3 { font-family: 'Poppins', sans-serif; font-size: 1.4rem; margin-bottom: 15px; margin-top: 30px; font-weight: 600; }
 
-        .company-logo:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
+        .interests-list { list-style: none; padding: 0; columns: 1; }
+        .interests-list li { margin-bottom: 8px; font-weight: 300; position: relative; padding-left: 15px; }
+        .interests-list li::before { content: '•'; position: absolute; left: 0; color: var(--text-main); }
+
+        .companies-grid { display: flex; gap: 30px; align-items: center; margin-top: 20px; flex-wrap: wrap; }
+        .company-logo { height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s; }
+        .company-logo:hover { filter: grayscale(0%); opacity: 1; }
 
         /* --- REST OF THE PORTFOLIO --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section.portfolio-section {
-            margin-bottom: 80px;
-            padding-top: 60px; 
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section.portfolio-section { margin-bottom: 80px; padding-top: 60px; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 30px; font-weight: 600; }
 
         /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--bg-body);
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
-        }
-
-        .project-media {
-            width: 100%;
-            height: 200px;
-            background-color: #f1f5f9;
-            position: relative;
-        }
-
-        .project-media::after {
-            content: 'Gif / Image';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #94a3b8;
-            font-weight: 600;
-        }
-
-        .project-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .project-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .project-card ul {
-            padding-left: 20px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: var(--bg-body); border-radius: 8px; box-shadow: var(--shadow-sm); transition: all 0.3s ease; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .project-media { width: 100%; height: 200px; background-color: #f1f5f9; position: relative; }
+        .project-media::after { content: 'Gif / Image'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #94a3b8; font-weight: 600; }
+        .project-media img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
+        .project-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .project-title { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 15px; }
+        .project-card ul { padding-left: 20px; color: var(--text-main); font-size: 0.95rem; margin-bottom: 20px; }
         .project-card li { margin-bottom: 8px; font-weight: 300; }
-
-        .btn-github-card {
-            margin-top: auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.2s;
-            justify-content: center;
-        }
-
-        .btn-github-card:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        
+        .btn-github-card { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.9rem; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; transition: all 0.2s; justify-content: center; }
+        .btn-github-card:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
         /* Experience Section */
-        .job-card {
-            background: var(--bg-body);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .job-card:hover {
-            border-left: 4px solid var(--accent);
-            box-shadow: var(--shadow);
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .job-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
+        .job-card { background: var(--bg-body); padding: 30px; border-radius: 8px; box-shadow: var(--shadow-sm); margin-bottom: 25px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .job-card:hover { border-left: 4px solid var(--accent); box-shadow: var(--shadow); }
+        .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .job-title { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--primary); }
         .job-company { color: var(--accent); font-weight: 500; font-size: 1rem; }
         .job-date { background: #f8fafc; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); border: 1px solid #e2e8f0; }
         .job-card ul { padding-left: 20px; font-weight: 300; }
         .job-card li { margin-bottom: 8px; }
 
         /* Publications Section */
-        .pub-card {
-            background: var(--bg-body);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid #10b981;
-            border-top: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .pub-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
+        .pub-card { background: var(--bg-body); padding: 25px; border-radius: 8px; box-shadow: var(--shadow-sm); border-left: 4px solid #10b981; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .pub-title { font-weight: 600; font-size: 1.1rem; color: var(--primary); margin-bottom: 5px; }
+        .pub-meta { font-style: italic; color: var(--text-light); font-size: 0.95rem; font-weight: 300; }
 
-        .pub-meta {
-            font-style: italic;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
+        footer { text-align: center; padding: 40px; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 40px; background-color: #fafafa; }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
-            background-color: #fafafa;
-        }
-
+        /* Mobile Adjustments */
         @media (max-width: 850px) {
-            .hero-bg { display: none; } /* Hide split background on mobile */
-            .hero-section { background-color: var(--bg-beige); }
-            .hero-container { grid-template-columns: 1fr; gap: 40px; }
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-left-column { 
+                box-shadow: -50vw 0 0 0 var(--bg-beige), 50vw 0 0 0 var(--bg-beige); /* Fills both sides on mobile */
+                justify-content: center; 
+                padding: 60px 20px 40px 20px; 
+            }
+            .about-text { padding: 40px 20px 60px 20px; }
             .nav-container { flex-direction: column; gap: 15px; }
             .nav-brand span { display: none; }
         }
@@ -474,20 +237,21 @@
     </nav>
 
     <section id="about" class="hero-section">
-        <div class="hero-bg"></div>
         <div class="hero-container">
             
-            <div class="profile-card">
-                <div class="profile-card-content">
-                    <img src="https://placehold.co/400x400/png?text=Profile+Pic" alt="Rohan Sada" class="profile-img">
-                    <h2>Rohan Sada</h2>
-                    <hr class="divider">
-                    <p>Computer Vision<br>Engineer</p>
-                </div>
-                <div class="profile-footer">
-                    <a href="https://www.linkedin.com/in/rohansada/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:rohansada000@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://github.com/RohanSada" target="_blank"><i class="fab fa-github"></i></a>
+            <div class="hero-left-column">
+                <div class="profile-card">
+                    <div class="profile-card-content">
+                        <img src="https://placehold.co/400x400/png?text=Profile+Pic" alt="Rohan Sada" class="profile-img">
+                        <h2>Rohan Sada</h2>
+                        <hr class="divider">
+                        <p>Computer Vision<br>Engineer</p>
+                    </div>
+                    <div class="profile-footer">
+                        <a href="https://www.linkedin.com/in/rohansada/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:rohansada000@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/RohanSada" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
             </div>
 
@@ -531,9 +295,8 @@
                     <div class="project-content">
                         <div class="project-title">Semantic SLAM & 3D Understanding</div>
                         <ul>
-                            <li>Architected a 3D perception pipeline integrating <strong>YOLO</strong> and <strong>Depth Anything</strong>.</li>
-                            <li>Reconstructed 3D object point clouds from monocular cameras.</li>
-                            <li>Integrated <strong>ORB-SLAM3</strong> for global coordinate mapping.</li>
+                            <li>Architected a 3D perception pipeline integrating <strong>YOLO</strong> and <strong>Depth Anything</strong> models to reconstruct 3D object point clouds from monocular cameras.</li>
+                            <li>Integrated <strong>ORB-SLAM3</strong> to map these local semantic observations into a consistent global coordinate system.</li>
                         </ul>
                         <a href="#" target="_blank" class="btn-github-card">
                             <i class="fab fa-github"></i> View Code
@@ -549,24 +312,7 @@
                         <div class="project-title">Distributed BLIP-2 Fine Tuning</div>
                         <ul>
                             <li>Fine-tuned BLIP-2 on medical data using <strong>PyTorch FSDP</strong> and <strong>DeepSpeed</strong> on 16 A100 GPUs.</li>
-                            <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong>.</li>
-                        </ul>
-                        <a href="#" target="_blank" class="btn-github-card">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-media">
-                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="Parking App Output">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-title">Parking Occupancy System</div>
-                        <ul>
-                            <li>Built a <strong>YOLO-based classifier</strong> processing 10K+ hours of video.</li>
-                            <li>Developed a neural network predictor with <strong>90% forecast accuracy</strong>.</li>
-                            <li>Integrated predictor into an interactive real-time map UI.</li>
+                            <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong> with efficient parameter sharding.</li>
                         </ul>
                         <a href="#" target="_blank" class="btn-github-card">
                             <i class="fab fa-github"></i> View Code
@@ -584,14 +330,14 @@
                 <div class="job-header">
                     <div>
                         <div class="job-title">Research Intern (CityOS)</div>
-                        <div class="job-company">WINLAB, Rutgers University, NJ</div>
+                        <div class="job-company">WINLAB, Rutgers University, New Jersey, USA</div>
                     </div>
                     <span class="job-date">May 2025 - Aug 2025</span>
                 </div>
                 <ul>
-                    <li>Built a YOLO-based parking occupancy classifier with an automated video-to-training pipeline.</li>
-                    <li>Developed a neural network predictor for parking availability achieving 90% forecast accuracy.</li>
-                    <li>Improved urban mobility visualization by integrating predictions into a real-time map UI.</li>
+                    <li>Built a YOLO-based parking occupancy classifier with an automated video-to-training pipeline, processing 10K+ hours of video.</li>
+                    <li>Developed a neural network predictor for parking availability with 90% forecast accuracy.</li>
+                    <li>Integrated predictor into an interactive UI (real-time map + predictor), improving visualization of urban mobility data.</li>
                 </ul>
             </div>
 
@@ -599,15 +345,14 @@
                 <div class="job-header">
                     <div>
                         <div class="job-title">Computer Vision Engineer</div>
-                        <div class="job-company">AllGoVision Technologies, Bengaluru</div>
+                        <div class="job-company">AllGoVision Technologies, Bengaluru, India</div>
                     </div>
                     <span class="job-date">Jun 2022 - Apr 2024</span>
                 </div>
                 <ul>
-                    <li>Designed and deployed a multi-camera tracking pipeline scaling across 20+ cameras.</li>
-                    <li>Implemented Kalman filters for trajectory prediction, improving cross-camera re-identification.</li>
-                    <li>Accelerated inference with <strong>NVIDIA TensorRT</strong>, cutting model runtime by 30%.</li>
-                    <li>Awarded AllGoVision Excellence Award for technical contributions.</li>
+                    <li>Designed and deployed a multi-camera tracking pipeline with multi-threading and concurrency, scaling across 20+ cameras.</li>
+                    <li>Implemented Kalman filters for trajectory prediction, improving cross-camera object tracking and re-identification.</li>
+                    <li>Accelerated inference with <strong>NVIDIA TensorRT</strong>, cutting model runtime by 30%, enabling real-time analytics.</li>
                 </ul>
             </div>
 
@@ -615,14 +360,14 @@
                 <div class="job-header">
                     <div>
                         <div class="job-title">Student Intern</div>
-                        <div class="job-company">Centre of Air Borne Systems (DRDO)</div>
+                        <div class="job-company">Centre of Air Borne Systems (DRDO), Govt. of India</div>
                     </div>
                     <span class="job-date">Oct 2021 - Dec 2021</span>
                 </div>
                 <ul>
-                    <li>Built a thermal + visible video fusion system for airborne cameras.</li>
-                    <li>Designed an encoder-decoder model optimized with TensorRT on NVIDIA Jetson Nano.</li>
-                    <li>Achieved real-time performance (~10 FPS) through optimized low-level processing.</li>
+                    <li>Real-Time EO/IR Fusion: Built a thermal + visible video fusion system for airborne cameras, enhancing visibility.</li>
+                    <li>Designed an encoder-decoder model for efficient image fusion, optimized with TensorRT and deployed on NVIDIA Jetson Nano.</li>
+                    <li>Embedded Integration: Achieved around 10 FPS real-time performance on Jetson Nano through optimized low-level processing.</li>
                 </ul>
             </div>
         </section>
