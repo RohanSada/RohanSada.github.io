@@ -20,11 +20,7 @@
             --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -33,7 +29,7 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER (HERO SECTION) --- */
+        /* --- HEADER --- */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
@@ -108,9 +104,7 @@
             padding: 0 20px;
         }
 
-        section {
-            margin-bottom: 60px;
-        }
+        section { margin-bottom: 60px; }
 
         h2 {
             font-family: 'Poppins', sans-serif;
@@ -122,22 +116,22 @@
             border-left: 5px solid var(--accent);
         }
 
-        /* --- PROJECTS GRID (2 Columns) --- */
+        /* --- PROJECTS GRID --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
         .project-card {
             background: var(--bg-card);
-            padding: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
+            overflow: hidden; /* Keeps image inside rounded corners */
         }
 
         .project-card:hover {
@@ -146,9 +140,36 @@
             border-color: var(--accent);
         }
 
+        /* NEW: Project GIF Area */
+        .project-media {
+            width: 100%;
+            height: 200px; /* Fixed height for uniformity */
+            background-color: #e2e8f0;
+            overflow: hidden;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers area without distortion */
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-media img {
+            transform: scale(1.05); /* Zoom effect on hover */
+        }
+
+        .project-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
         .project-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 15px;
@@ -158,13 +179,39 @@
             padding-left: 20px;
             color: var(--text-main);
             font-size: 0.95rem;
+            margin-bottom: 20px;
         }
 
-        .project-card li {
-            margin-bottom: 8px;
+        .project-card li { margin-bottom: 8px; }
+
+        /* NEW: GitHub Button Style */
+        .project-links {
+            margin-top: auto; /* Pushes button to bottom */
         }
 
-        /* --- EXPERIENCE LIST --- */
+        .btn-github-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-github-card:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- EXPERIENCE SECTION --- */
         .job-card {
             background: var(--bg-card);
             padding: 30px;
@@ -196,22 +243,11 @@
             color: var(--primary);
         }
 
-        .job-company {
-            color: var(--accent);
-            font-weight: 500;
-            font-size: 1rem;
-        }
+        .job-company { color: var(--accent); font-weight: 500; font-size: 1rem; }
+        .job-date { background: #f1f5f9; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
+        .job-card ul { padding-left: 20px; }
+        .job-card li { margin-bottom: 8px; }
 
-        .job-date {
-            background: #f1f5f9;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 40px;
@@ -221,7 +257,6 @@
             margin-top: 60px;
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             header h1 { font-size: 2.2rem; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -256,41 +291,78 @@
             <div class="projects-grid">
                 
                 <div class="project-card">
-                    <div class="project-title">Semantic SLAM & 3D Understanding</div>
-                    <ul>
-                        <li>Architected a 3D perception pipeline integrating <strong>YOLO</strong> and <strong>Depth Anything</strong> models.</li>
-                        <li>Reconstructed 3D object point clouds from monocular cameras.</li>
-                        <li>Integrated <strong>ORB-SLAM3</strong> to map local semantic observations into a global coordinate system.</li>
-                        <li>Developed custom semantic 3D tracker using KD-Tree neighbor search.</li>
-                    </ul>
+                    <div class="project-media">
+                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="Semantic SLAM Output">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">Semantic SLAM & 3D Understanding</div>
+                        <ul>
+                            <li>Architected a 3D perception pipeline integrating <strong>YOLO</strong> and <strong>Depth Anything</strong>.</li>
+                            <li>Reconstructed 3D object point clouds from monocular cameras.</li>
+                            <li>Integrated <strong>ORB-SLAM3</strong> for global coordinate mapping.</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/rohansada/YOUR-PROJECT-REPO" target="_blank" class="btn-github-card">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-title">Distributed BLIP-2 Fine Tuning</div>
-                    <ul>
-                        <li>Fine-tuned BLIP-2 on medical data using <strong>PyTorch FSDP</strong> and <strong>DeepSpeed</strong> on 16 A100 GPUs.</li>
-                        <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong> via parameter sharding.</li>
-                        <li>Optimized training pipeline for large-scale multi-modal learning.</li>
-                    </ul>
+                    <div class="project-media">
+                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="BLIP-2 Output">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">Distributed BLIP-2 Fine Tuning</div>
+                        <ul>
+                            <li>Fine-tuned BLIP-2 on medical data using <strong>PyTorch FSDP</strong> and <strong>DeepSpeed</strong> on 16 A100 GPUs.</li>
+                            <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong>.</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/rohansada/YOUR-PROJECT-REPO" target="_blank" class="btn-github-card">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-title">Real-Time EO/IR Fusion</div>
-                    <ul>
-                        <li><strong>Publication:</strong> IEEE Region 10 Symposium (TENSYMP), 2022.</li>
-                        <li>Developed "Deep Learning Based Real-Time Fusion of Day and Thermal Videos."</li>
-                        <li>Designed encoder-decoder model optimized with <strong>TensorRT</strong> on Jetson Nano.</li>
-                        <li>Achieved ~10 FPS real-time performance through low-level optimization.</li>
-                    </ul>
+                    <div class="project-media">
+                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="Fusion Output">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">Real-Time EO/IR Fusion</div>
+                        <ul>
+                            <li><strong>Publication:</strong> IEEE Region 10 Symposium (TENSYMP).</li>
+                            <li>Deep Learning Based Real-Time Fusion of Day and Thermal Videos.</li>
+                            <li>Optimized with <strong>TensorRT</strong> on Jetson Nano (~10 FPS).</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/rohansada/YOUR-PROJECT-REPO" target="_blank" class="btn-github-card">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-title">Parking Occupancy System</div>
-                    <ul>
-                        <li>Built a <strong>YOLO-based classifier</strong> processing 10K+ hours of video data.</li>
-                        <li>Developed a neural network predictor for parking availability with <strong>90% forecast accuracy</strong>.</li>
-                        <li>Integrated predictor into an interactive real-time map UI.</li>
-                    </ul>
+                    <div class="project-media">
+                        <img src="https://placehold.co/600x400/png?text=Upload+GIF+Here" alt="Parking App Output">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">Parking Occupancy System</div>
+                        <ul>
+                            <li>Built a <strong>YOLO-based classifier</strong> processing 10K+ hours of video.</li>
+                            <li>Developed a neural network predictor with <strong>90% forecast accuracy</strong>.</li>
+                            <li>Integrated predictor into an interactive real-time map UI.</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/rohansada/YOUR-PROJECT-REPO" target="_blank" class="btn-github-card">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
             </div>
