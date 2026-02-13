@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohan Sada | Computer Vision Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- CSS STYLES --- */
         :root {
-            --primary: #0f172a;       /* Deep Navy */
-            --accent: #3b82f6;        /* Bright Blue */
-            --bg-body: #f8fafc;       /* Light Blue-Grey */
-            --bg-card: #ffffff;       /* White */
-            --text-main: #334155;     /* Slate Grey */
-            --text-light: #64748b;    /* Light Slate */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --primary: #000000;       /* Black for headings */
+            --accent: #3b82f6;        /* Blue accent */
+            --bg-body: #ffffff;       /* White background */
+            --bg-beige: #e9e2db;      /* Wix beige background */
+            --text-main: #333333;     /* Dark Grey for text */
+            --text-light: #666666;    /* Lighter Grey */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --border-color: #eaeaea;
         }
 
         html {
-            scroll-behavior: smooth; /* Enables smooth scrolling when clicking tabs */
+            scroll-behavior: smooth;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,172 +34,263 @@
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION TABS --- */
+        /* --- NAVIGATION --- */
         .navbar {
             background: #ffffff;
-            position: sticky; /* Keeps nav at top when scrolling (optional) */
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
             display: flex;
-            justify-content: center;
-            padding: 15px 0;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .nav-brand span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 300;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-main);
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
+            font-weight: 400;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: color 0.3s;
-            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* Underline effect on hover */
-        .nav-links a::after {
-            content: '';
+        /* --- HERO / ABOUT SECTION --- */
+        .hero-section {
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        /* The beige background block */
+        .hero-bg {
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
+            top: 0;
             left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s;
+            width: 45%;
+            height: 100%;
+            background-color: var(--bg-beige);
+            z-index: 0;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: center;
         }
 
-        /* --- HERO HEADER --- */
-        header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: white;
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            box-shadow: var(--shadow);
             text-align: center;
-            padding: 60px 20px;
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
         }
 
-        header h1 {
+        .profile-card-content {
+            padding: 50px 30px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-card h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 3rem;
-            font-weight: 600;
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            letter-spacing: -0.5px;
+            color: var(--primary);
         }
 
-        header p {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            margin-bottom: 25px;
+        .divider {
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 15px auto;
+            border: none;
+        }
+
+        .profile-card p {
             font-weight: 300;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
 
-        .contact-bar {
+        .profile-footer {
+            background-color: white;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
         }
 
-        .contact-bar a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
+        .profile-footer a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
         }
 
-        .contact-bar a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+        .profile-footer a:hover {
+            color: var(--accent);
         }
 
-        .btn-download {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 6px;
-            text-decoration: none;
+        /* About Text Container */
+        .about-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
 
-        .btn-download:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+        .about-text p {
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        /* --- CONTAINER --- */
+        .about-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .interests-list {
+            list-style: none;
+            padding: 0;
+            columns: 1; /* Adjust to 2 if you want a two-column list */
+        }
+
+        .interests-list li {
+            margin-bottom: 8px;
+            font-weight: 300;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .interests-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-main);
+        }
+
+        /* Company Logos Area */
+        .companies-grid {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .company-logo {
+            height: 60px; /* Adjust based on your actual logo proportions */
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .company-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- REST OF THE PORTFOLIO --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        section {
-            margin-bottom: 80px; /* Increased spacing between sections */
-            padding-top: 40px; /* Offset for sticky nav */
-            margin-top: -40px;
+        section.portfolio-section {
+            margin-bottom: 80px;
+            padding-top: 60px; 
         }
 
-        h2 {
+        .section-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             color: var(--primary);
             margin-bottom: 30px;
-            position: relative;
-            padding-left: 15px;
-            border-left: 5px solid var(--accent);
+            font-weight: 600;
         }
 
-        /* --- ABOUT ME SECTION --- */
-        .about-content {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border: 1px solid #e2e8f0;
-        }
-        
-        .about-content p {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        /* --- PROJECTS GRID --- */
+        /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .project-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            background: var(--bg-body);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -206,20 +298,17 @@
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: var(--shadow);
             border-color: var(--accent);
         }
 
         .project-media {
             width: 100%;
             height: 200px;
-            background-color: #e2e8f0;
-            overflow: hidden;
-            border-bottom: 1px solid #f1f5f9;
+            background-color: #f1f5f9;
             position: relative;
         }
 
-        /* Placeholder Text for GIF Area */
         .project-media::after {
             content: 'Gif / Image';
             position: absolute;
@@ -228,20 +317,14 @@
             transform: translate(-50%, -50%);
             color: #94a3b8;
             font-weight: 600;
-            z-index: 0;
         }
 
         .project-media img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
             position: relative;
             z-index: 1;
-        }
-
-        .project-card:hover .project-media img {
-            transform: scale(1.05);
         }
 
         .project-content {
@@ -266,23 +349,21 @@
             margin-bottom: 20px;
         }
 
-        .project-card li { margin-bottom: 8px; }
-
-        .project-links { margin-top: auto; }
+        .project-card li { margin-bottom: 8px; font-weight: 300; }
 
         .btn-github-card {
+            margin-top: auto;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--border-color);
             padding: 8px 16px;
-            border-radius: 6px;
+            border-radius: 4px;
             transition: all 0.2s;
-            width: 100%;
             justify-content: center;
         }
 
@@ -292,20 +373,20 @@
             border-color: var(--primary);
         }
 
-        /* --- EXPERIENCE SECTION --- */
+        /* Experience Section */
         .job-card {
-            background: var(--bg-card);
+            background: var(--bg-body);
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
             margin-bottom: 25px;
-            border-left: 5px solid transparent;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .job-card:hover {
-            border-left: 5px solid var(--accent);
-            box-shadow: var(--shadow-hover);
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--shadow);
         }
 
         .job-header {
@@ -325,17 +406,20 @@
         }
 
         .job-company { color: var(--accent); font-weight: 500; font-size: 1rem; }
-        .job-date { background: #f1f5f9; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
-        .job-card ul { padding-left: 20px; }
+        .job-date { background: #f8fafc; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); border: 1px solid #e2e8f0; }
+        .job-card ul { padding-left: 20px; font-weight: 300; }
         .job-card li { margin-bottom: 8px; }
 
-        /* --- PUBLICATIONS SECTION --- */
+        /* Publications Section */
         .pub-card {
-            background: var(--bg-card);
+            background: var(--bg-body);
             padding: 25px;
             border-radius: 8px;
-            box-shadow: var(--shadow);
-            border-left: 5px solid #10b981; /* Green accent for papers */
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #10b981;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .pub-title {
@@ -349,6 +433,7 @@
             font-style: italic;
             color: var(--text-light);
             font-size: 0.95rem;
+            font-weight: 300;
         }
 
         footer {
@@ -356,66 +441,87 @@
             padding: 40px;
             color: var(--text-light);
             font-size: 0.9rem;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+            background-color: #fafafa;
         }
 
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.2rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .contact-bar { flex-direction: column; gap: 10px; }
-            .contact-bar a { justify-content: center; width: 100%; }
-            .nav-links { gap: 15px; font-size: 0.85rem; }
+        @media (max-width: 850px) {
+            .hero-bg { display: none; } /* Hide split background on mobile */
+            .hero-section { background-color: var(--bg-beige); }
+            .hero-container { grid-template-columns: 1fr; gap: 40px; }
+            .nav-container { flex-direction: column; gap: 15px; }
+            .nav-brand span { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#publications">Publications</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Rohan Sada</h1>
+                <span>/ Computer Vision Engineer</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="resume.pdf" target="_blank">Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <header>
-        <div class="container">
-            <h1>Rohan Sada</h1>
-            <p>Computer Vision Engineer | Spatial AI</p>
+    <section id="about" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
             
-            <div class="contact-bar">
-                <a href="tel:+15513714118"><i class="fas fa-phone"></i> +1 551-371-4118</a>
-                <a href="https://www.linkedin.com/in/rohansada/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="mailto:rohansada000@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <div class="profile-card">
+                <div class="profile-card-content">
+                    <img src="https://placehold.co/400x400/png?text=Profile+Pic" alt="Rohan Sada" class="profile-img">
+                    <h2>Rohan Sada</h2>
+                    <hr class="divider">
+                    <p>Computer Vision<br>Engineer</p>
+                </div>
+                <div class="profile-footer">
+                    <a href="https://www.linkedin.com/in/rohansada/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:rohansada000@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/RohanSada" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
             </div>
 
-            <a href="resume.pdf" class="btn-download" target="_blank" download>
-                <i class="fas fa-file-download"></i> Download Resume
-            </a>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    I'm currently pursuing a Master's in Electrical and Computer Engineering from Rutgers University - New Brunswick. I am a student who is passionate about Computer Vision and AI. I aim to be able to use my expertise in technology to create solutions to help solve problems that people face in their day to day lives.
+                </p>
+
+                <h3>Interests</h3>
+                <ul class="interests-list">
+                    <li>Computer Vision</li>
+                    <li>Machine Learning</li>
+                    <li>3D Reconstruction</li>
+                    <li>Image Processing</li>
+                    <li>Large Language Models (LLM)</li>
+                    <li>Software Engineering</li>
+                </ul>
+
+                <h3>Companies I Have Worked With</h3>
+                <div class="companies-grid">
+                    <img src="https://placehold.co/150x60/png?text=AllGoVision" alt="AllGoVision" class="company-logo">
+                    <img src="https://placehold.co/100x60/png?text=DRDO" alt="DRDO" class="company-logo">
+                    <img src="https://placehold.co/150x60/png?text=WINLAB" alt="WINLAB" class="company-logo">
+                </div>
+            </div>
+
         </div>
-    </header>
+    </section>
 
     <div class="container">
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    I am a <strong>Computer Vision Engineer</strong> and Master's student at <strong>Rutgers University</strong>, specializing in Spatial AI and 3D Perception. With a strong foundation in Deep Learning, I focus on building efficient, real-time perception pipelines for autonomous systems and video analytics.
-                </p>
-                <p>
-                    My experience spans from designing multi-camera tracking systems at <strong>AllGoVision Technologies</strong> to developing real-time fusion models for airborne systems at <strong>DRDO</strong>. I am proficient in optimizing models for edge deployment using <strong>TensorRT</strong> and have hands-on experience with SLAM, Sensor Fusion, and Generative AI.
-                </p>
-                <p>
-                    <strong>Core Skills:</strong> PyTorch, C++, Python, TensorRT, OpenCV, Docker, Linux, and 3D Geometry.
-                </p>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2>Academic Projects</h2>
+        <section id="projects" class="portfolio-section">
+            <h2 class="section-title">Academic Projects</h2>
             <div class="projects-grid">
                 
                 <div class="project-card">
@@ -429,11 +535,9 @@
                             <li>Reconstructed 3D object point clouds from monocular cameras.</li>
                             <li>Integrated <strong>ORB-SLAM3</strong> for global coordinate mapping.</li>
                         </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
+                        <a href="#" target="_blank" class="btn-github-card">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
                     </div>
                 </div>
 
@@ -447,11 +551,9 @@
                             <li>Fine-tuned BLIP-2 on medical data using <strong>PyTorch FSDP</strong> and <strong>DeepSpeed</strong> on 16 A100 GPUs.</li>
                             <li>Reduced memory usage by <strong>34%</strong> and achieved <strong>10.7x throughput speedup</strong>.</li>
                         </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
+                        <a href="#" target="_blank" class="btn-github-card">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
                     </div>
                 </div>
 
@@ -466,19 +568,17 @@
                             <li>Developed a neural network predictor with <strong>90% forecast accuracy</strong>.</li>
                             <li>Integrated predictor into an interactive real-time map UI.</li>
                         </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/RohanSada/YOUR-REPO-NAME" target="_blank" class="btn-github-card">
-                                <i class="fab fa-github"></i> View Code
-                            </a>
-                        </div>
+                        <a href="#" target="_blank" class="btn-github-card">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section id="experience">
-            <h2>Work Experience</h2>
+        <section id="experience" class="portfolio-section">
+            <h2 class="section-title">Work Experience</h2>
 
             <div class="job-card">
                 <div class="job-header">
@@ -527,8 +627,8 @@
             </div>
         </section>
 
-        <section id="publications">
-            <h2>Publications</h2>
+        <section id="publications" class="portfolio-section">
+            <h2 class="section-title">Publications</h2>
             <div class="pub-card">
                 <div class="pub-title">Deep Learning Based Real-Time Fusion of Day and Thermal Videos</div>
                 <div class="pub-meta">
@@ -536,7 +636,7 @@
                     <em>IEEE Region 10 Symposium (TENSYMP), 2022, Mumbai, India.</em>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="https://ieeexplore.ieee.org/document/9864438" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                    <a href="https://ieeexplore.ieee.org/document/9864438" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.95rem;">
                         <i class="fas fa-external-link-alt"></i> View Paper
                     </a>
                 </div>
