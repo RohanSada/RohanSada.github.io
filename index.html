@@ -85,9 +85,9 @@
         
         .bento-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr; /* Adjusted ratio for better balance */
+            grid-template-columns: 1.3fr 1fr; 
             gap: 24px;
-            align-items: stretch; /* Ensures both columns are equal height */
+            align-items: stretch; 
         }
 
         /* 1. Profile Card (Left Column) */
@@ -100,7 +100,7 @@
             flex-direction: column;
             justify-content: space-between;
             box-shadow: var(--shadow-sm);
-            height: 100%; /* Fills the grid cell */
+            height: 100%;
         }
         
         .profile-top { display: flex; flex-direction: column; gap: 24px; }
@@ -152,7 +152,7 @@
             justify-content: space-between; 
             align-items: center; 
             padding-bottom: 4px;
-            min-height: 30px; /* Align with top of profile text visually */
+            min-height: 30px; 
         }
         .section-label { font-size: 0.85rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; }
 
@@ -167,7 +167,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            flex: 1; /* Makes cards stretch equally to fill the column height */
+            flex: 1; 
         }
         .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
         
@@ -188,8 +188,9 @@
         .edu-school { color: var(--accent); font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block; }
         .edu-meta { font-size: 0.85rem; color: var(--text-tertiary); display: flex; justify-content: space-between; margin-top: 12px;}
 
-        /* Experience List */
+        /* Experience & Project Detailed List */
         .exp-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
+        
         .job-card { 
             background: white; 
             padding: 32px; 
@@ -205,9 +206,25 @@
         .job-date { font-size: 0.85rem; background: var(--bg-surface); padding: 6px 12px; border-radius: 20px; color: var(--text-secondary); border: 1px solid var(--border); font-weight: 500; }
         
         .job-details li { margin-bottom: 8px; list-style-position: inside; margin-left: 4px; }
-        .job-stack { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        
+        .job-stack { 
+            margin-top: 20px; 
+            padding-top: 16px; 
+            border-top: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center; 
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .stack-left { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .stack-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
         .stack-item { font-size: 0.8rem; color: var(--text-secondary); }
+
+        .project-links { display: flex; gap: 12px; }
+        .pj-link { font-size: 0.85rem; font-weight: 500; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+        .pj-link:hover { text-decoration: underline; }
 
         /* Skills Detailed */
         .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
@@ -237,6 +254,8 @@
             .edu-grid { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; gap: 4px; }
             .right-column { height: auto; }
+            .job-stack { flex-direction: column; align-items: flex-start; }
+            .project-links { margin-top: 8px; }
         }
     </style>
 </head>
@@ -248,7 +267,7 @@
             <ul class="nav-links">
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#work">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#projects-full">Projects</a></li>
                 <li><a href="resume.pdf" class="btn-resume">Resume</a></li>
             </ul>
         </div>
@@ -396,8 +415,10 @@
                         <li>Integrating the predictor into an interactive UI for real-time urban mobility visualization.</li>
                     </ul>
                     <div class="job-stack">
-                        <span class="stack-label">Tech Stack:</span>
-                        <span class="stack-item">Python, YOLOv8, PyTorch, Video Analytics</span>
+                        <div class="stack-left">
+                            <span class="stack-label">Tech Stack:</span>
+                            <span class="stack-item">Python, YOLOv8, PyTorch, Video Analytics</span>
+                        </div>
                     </div>
                 </div>
 
@@ -415,8 +436,10 @@
                         <li>Optimized inference with <strong>NVIDIA TensorRT</strong>, reducing model runtime by 30% for real-time analytics.</li>
                     </ul>
                     <div class="job-stack">
-                        <span class="stack-label">Tech Stack:</span>
-                        <span class="stack-item">C++, TensorRT, DeepStream, Multi-threading, Kalman Filters</span>
+                        <div class="stack-left">
+                            <span class="stack-label">Tech Stack:</span>
+                            <span class="stack-item">C++, TensorRT, DeepStream, Multi-threading</span>
+                        </div>
                     </div>
                 </div>
 
@@ -433,8 +456,65 @@
                         <li>Designed an encoder-decoder model optimized with TensorRT, achieving 10 FPS on Jetson Nano.</li>
                     </ul>
                     <div class="job-stack">
-                        <span class="stack-label">Tech Stack:</span>
-                        <span class="stack-item">Python, Jetson Nano, Image Fusion, Embedded AI</span>
+                        <div class="stack-left">
+                            <span class="stack-label">Tech Stack:</span>
+                            <span class="stack-item">Python, Jetson Nano, Image Fusion, Embedded AI</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects-full">
+            <h2 class="section-title">Detailed Projects</h2>
+            <div class="exp-list">
+                
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-role">Semantic SLAM & 3D Reconstruction</div>
+                            <div class="job-company">Graduate Research</div>
+                        </div>
+                        <span class="job-date">Fall 2024</span>
+                    </div>
+                    <ul class="job-details bullet-list">
+                        <li>Developed a robust SLAM pipeline combining <strong>ORB-SLAM3</strong> for tracking and <strong>YOLOv8</strong> for semantic understanding.</li>
+                        <li>Integrated <strong>Depth Anything</strong> model to generate pseudo-depth maps from monocular camera inputs.</li>
+                        <li>Constructed dense, semantically labeled 3D point clouds of indoor environments to aid robotic navigation tasks.</li>
+                    </ul>
+                    <div class="job-stack">
+                        <div class="stack-left">
+                            <span class="stack-label">Tech Stack:</span>
+                            <span class="stack-item">C++, Python, ROS, Open3D, PCL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RohanSada" class="pj-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-role">Distributed Large Language Model Tuning</div>
+                            <div class="job-company">High Performance Computing</div>
+                        </div>
+                        <span class="job-date">Spring 2025</span>
+                    </div>
+                    <ul class="job-details bullet-list">
+                        <li>Fine-tuned the <strong>BLIP-2</strong> Vision-Language model on a large-scale Medical VQA dataset.</li>
+                        <li>Leveraged <strong>PyTorch FSDP (Fully Sharded Data Parallel)</strong> to distribute training across 16 NVIDIA A100 GPUs.</li>
+                        <li>Optimized data loading and gradient synchronization, achieving a <strong>10.7x speedup</strong> in training throughput compared to baseline.</li>
+                    </ul>
+                    <div class="job-stack">
+                        <div class="stack-left">
+                            <span class="stack-label">Tech Stack:</span>
+                            <span class="stack-item">PyTorch, Slurm, HuggingFace, CUDA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RohanSada" class="pj-link"><i class="fab fa-github"></i> View Code</a>
+                        </div>
                     </div>
                 </div>
 
