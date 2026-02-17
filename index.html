@@ -26,14 +26,13 @@
             
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html { 
             scroll-behavior: smooth; 
-            scroll-padding-top: 100px; /* Offsets sticky header */
+            scroll-padding-top: 100px; 
         }
         
         body { 
@@ -86,14 +85,13 @@
         
         .bento-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr; 
-            grid-template-rows: auto auto;
+            grid-template-columns: 1.3fr 1fr; /* Adjusted ratio for better balance */
             gap: 24px;
+            align-items: stretch; /* Ensures both columns are equal height */
         }
 
-        /* Profile Card (Left) */
+        /* 1. Profile Card (Left Column) */
         .profile-card {
-            grid-row: span 2;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -102,6 +100,7 @@
             flex-direction: column;
             justify-content: space-between;
             box-shadow: var(--shadow-sm);
+            height: 100%; /* Fills the grid cell */
         }
         
         .profile-top { display: flex; flex-direction: column; gap: 24px; }
@@ -117,7 +116,7 @@
         .profile-text .role { font-size: 1.1rem; color: var(--accent); font-weight: 600; margin-bottom: 16px; display: block; }
         .profile-text p { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 24px; max-width: 90%; }
         
-        .contact-row { display: flex; gap: 16px; margin-top: auto; }
+        .contact-row { display: flex; gap: 16px; margin-top: auto; padding-top: 30px;}
         .icon-btn { 
             width: 40px; height: 40px; 
             border-radius: 50%; 
@@ -127,8 +126,7 @@
         }
         .icon-btn:hover { background: var(--text-primary); color: white; border-color: var(--text-primary); }
 
-        /* Skills Mini-Section (Inside Profile) */
-        .hero-skills { margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px; }
+        .hero-skills { margin-top: auto; border-top: 1px solid var(--border); padding-top: 24px; }
         .hero-skills-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); margin-bottom: 12px; font-weight: 600; }
         .pill-container { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill { 
@@ -141,8 +139,21 @@
             color: var(--text-primary);
         }
 
-        /* Project Cards (Right Side) */
-        .projects-header { grid-column: 2; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 4px; margin-bottom: -8px; }
+        /* 2. Projects Column (Right Column Wrapper) */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 100%;
+        }
+
+        .projects-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding-bottom: 4px;
+            min-height: 30px; /* Align with top of profile text visually */
+        }
         .section-label { font-size: 0.85rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; }
 
         .project-card {
@@ -154,14 +165,14 @@
             flex-direction: column;
             justify-content: space-between;
             transition: all 0.3s ease;
-            height: 220px;
             position: relative;
             overflow: hidden;
+            flex: 1; /* Makes cards stretch equally to fill the column height */
         }
         .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
         
         .pj-tag { position: absolute; top: 20px; right: 20px; font-size: 1.2rem; color: var(--text-tertiary); }
-        .pj-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); margin-top: 10px; }
+        .pj-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); margin-top: 0px; }
         .pj-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .pj-footer { display: flex; gap: 8px; margin-top: auto; }
         .tech-badge { font-size: 0.75rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 4px 10px; border-radius: 4px; }
@@ -175,7 +186,7 @@
         .edu-card { background: white; padding: 24px; border-radius: 12px; border: 1px solid var(--border); }
         .edu-degree { font-weight: 700; color: var(--text-primary); font-size: 1.05rem; }
         .edu-school { color: var(--accent); font-weight: 500; font-size: 0.95rem; margin-bottom: 8px; display: block; }
-        .edu-meta { font-size: 0.85rem; color: var(--text-tertiary); display: flex; justify-content: space-between; }
+        .edu-meta { font-size: 0.85rem; color: var(--text-tertiary); display: flex; justify-content: space-between; margin-top: 12px;}
 
         /* Experience List */
         .exp-list { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
@@ -220,11 +231,12 @@
         /* Responsive */
         @media (max-width: 850px) {
             .bento-grid { grid-template-columns: 1fr; }
-            .profile-card { grid-row: auto; padding: 32px; }
-            .projects-header { grid-column: 1; margin-top: 20px; }
+            .profile-card { padding: 32px; height: auto;}
+            .projects-header { margin-top: 20px; }
             .skills-grid { grid-template-columns: 1fr; }
             .edu-grid { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; gap: 4px; }
+            .right-column { height: auto; }
         }
     </style>
 </head>
@@ -278,35 +290,37 @@
                     </div>
                 </div>
 
-                <div class="projects-header">
-                    <span class="section-label">Featured Projects</span>
-                    <a href="https://github.com/RohanSada" style="font-size: 0.85rem; color: var(--accent); font-weight: 500;">View GitHub &rarr;</a>
+                <div class="right-column">
+                    <div class="projects-header">
+                        <span class="section-label">Featured Projects</span>
+                        <a href="https://github.com/RohanSada" style="font-size: 0.85rem; color: var(--accent); font-weight: 500;">View GitHub &rarr;</a>
+                    </div>
+
+                    <a href="https://github.com/RohanSada" target="_blank" class="project-card">
+                        <i class="fas fa-cube pj-tag"></i>
+                        <div>
+                            <h3 class="pj-title">Semantic SLAM</h3>
+                            <p class="pj-desc">Architected a 3D perception pipeline integrating YOLO, Depth Anything, and ORB-SLAM3 to reconstruct 3D object point clouds.</p>
+                        </div>
+                        <div class="pj-footer">
+                            <span class="tech-badge">C++</span>
+                            <span class="tech-badge">ROS</span>
+                            <span class="tech-badge">SLAM</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/RohanSada" target="_blank" class="project-card">
+                        <i class="fas fa-network-wired pj-tag"></i>
+                        <div>
+                            <h3 class="pj-title">Distributed LLM Tuning</h3>
+                            <p class="pj-desc">Fine-tuned BLIP-2 on medical data using PyTorch FSDP on 16 A100 GPUs. Achieved 10.7x throughput speedup.</p>
+                        </div>
+                        <div class="pj-footer">
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">A100 Cluster</span>
+                        </div>
+                    </a>
                 </div>
-
-                <a href="https://github.com/RohanSada" target="_blank" class="project-card">
-                    <i class="fas fa-cube pj-tag"></i>
-                    <div>
-                        <h3 class="pj-title">Semantic SLAM</h3>
-                        <p class="pj-desc">Architected a 3D perception pipeline integrating YOLO, Depth Anything, and ORB-SLAM3 to reconstruct 3D object point clouds.</p>
-                    </div>
-                    <div class="pj-footer">
-                        <span class="tech-badge">C++</span>
-                        <span class="tech-badge">ROS</span>
-                        <span class="tech-badge">SLAM</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/RohanSada" target="_blank" class="project-card">
-                    <i class="fas fa-network-wired pj-tag"></i>
-                    <div>
-                        <h3 class="pj-title">Distributed LLM Tuning</h3>
-                        <p class="pj-desc">Fine-tuned BLIP-2 on medical data using PyTorch FSDP on 16 A100 GPUs. Achieved 10.7x throughput speedup.</p>
-                    </div>
-                    <div class="pj-footer">
-                        <span class="tech-badge">PyTorch</span>
-                        <span class="tech-badge">A100 Cluster</span>
-                    </div>
-                </a>
 
             </div>
         </section>
